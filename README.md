@@ -7,7 +7,7 @@ Mój **Neovim** na [LazyVim](https://github.com/LazyVim/LazyVim) z motywem ayu i
 - **testów** (neotest), inc-rename, mini-surround, treesitter-context, gitui,
 - **Godota**: LSP GDScriptu z edytora Godota (port 6005), a Godot może otwierać pliki w tym nvimie jako zewnętrzny edytor,
 - Markdowna bez diagnostyk i sprawdzania pisowni,
-- **notebooków Jupytera** (`.ipynb`) przez [jupynvim](https://github.com/sheng-tse/jupynvim): komórki, prawdziwy kernel, LSP w komórkach i wykresy jako obrazki (patrz [niżej](#notebooki-jupytera)).
+- **notebooków Jupytera** (`.ipynb`) przez mój fork [jupynvim](https://github.com/K-u-r-c/jupynvim): komórki, prawdziwy kernel, LSP w komórkach, wykresy jako obrazki, a do tego HTML i obrazki z plików w komórkach markdown (patrz [niżej](#notebooki-jupytera)).
 
 > Część zestawu **[linux-tools](https://github.com/K-u-r-c/linux-tools)**. Najlepiej działa w [ghostty](https://github.com/K-u-r-c/ghostty) (obrazki w notebookach) + [tmux](https://github.com/K-u-r-c/tmux).
 
@@ -36,7 +36,7 @@ Aktualizacja: `git -C ~/.config/nvim pull`, potem w nvimie `:Lazy restore`.
 
 ## Notebooki Jupytera
 
-`lua/plugins/jupynvim.lua` dodaje [jupynvim](https://github.com/sheng-tse/jupynvim) (tylko stabilne wydania, `version = "*"`). Przy instalacji pobiera swój backend `jupynvim-core` z GitHub Releases i sprawdza go z `SHA256SUMS`. `.ipynb` otwierasz zwykłym `:e`, kernel startuje sam według metadanych notebooka.
+`lua/plugins/jupynvim.lua` dodaje mój fork [K-u-r-c/jupynvim](https://github.com/K-u-r-c/jupynvim) (gałąź `html-markdown`, oparta na v0.4.6 oryginału [sheng-tse/jupynvim](https://github.com/sheng-tse/jupynvim)). Fork rysuje surowy HTML w komórkach markdown (banery z obrazkiem obok tekstu, tabelki, nagłówki, kolory ze `style=`) i pokazuje obrazki z plików (`<img src>`, `![](plik.png)`), nie zmieniając źródła komórki. Jeśli istnieje lokalny klon w `~/Projects/jupynvim`, lazy bierze plugin stamtąd. Przy instalacji pobiera się backend `jupynvim-core` z GitHub Releases oryginału, sprawdzany z `SHA256SUMS`. `.ipynb` otwierasz zwykłym `:e`, kernel startuje sam według metadanych notebooka.
 
 Obrazki (wykresy) wymagają terminala z protokołem graficznym Kitty: Ghostty 1.3+ albo kitty. W tmuxie także `set -g allow-passthrough on` i `extended-keys` (dla Shift/Ctrl+Enter), oba są w moim [tmux](https://github.com/K-u-r-c/tmux). W Alacritty ustaw `image_renderer = "chafa"` (obrazki ze znaków, `pacman -S chafa`).
 
